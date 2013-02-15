@@ -1,0 +1,16 @@
+.article
+
+  .date= format_date(@page.date) if @page.date
+  .clear
+  .toc= toc(@page)
+  
+  .body
+    ~ @page.to_html(self)
+
+  .author
+    %a(href="http://weibo.com/#{Nesta::Config.author['weibo']}" target="_blank")
+      = "- #{Nesta::Config.author['name']}"
+      %img(src="/clean/images/weibo.png")
+  .clear
+
+  .comments= haml :comments, :layout => false
